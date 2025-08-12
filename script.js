@@ -1,4 +1,8 @@
 
+// TODO: Show results disables radio buttons and hides button, scrolls to description
+// TODO: Try again resets radio buttons and scrolls to top of page
+
+
 // Store references
 const resultsButton = document.querySelector("#resultsButton");
 const results = document.querySelector("#results");
@@ -7,18 +11,20 @@ const tryAgainButton = document.querySelector("#tryAgainButton");
 //Functions
 
 const calcResults = () => {
-    // TODO: make this into a loop
-    const q1 = document.querySelector('input[name="q1"]:checked').value;
-    const q2 = document.querySelector('input[name="q2"]:checked').value;
-    const q3 = document.querySelector('input[name="q3"]:checked').value;
-    const q4 = document.querySelector('input[name="q4"]:checked').value;
+    const results = []
 
-    const results = [q1, q2, q3, q4]
+    for (let i = 1; i < 16; i++) {
+        const type = document.querySelector(`input[name="q${i}"]:checked`).value;
+
+        if (type !== "noneof") {
+            results.push(type);
+        }
+    }
 
     return mostFrequent(results);
-
 }
 
+// Count the most frequent values in an array (1 to 2 values)
 function mostFrequent(arr) {
     let m = new Map();
     let maxCount = 0;
@@ -36,14 +42,25 @@ function mostFrequent(arr) {
         }
     }
 
-    return res[Math.floor(Math.random() * res.length)];;
+    return res;
+    //return res[Math.floor(Math.random() * res.length)];
 }
 
 
 // Event handler functions
 const showResults = () => {
     const type = calcResults();
-    results.textContent = `Your type is ${type}`;
+    if (type.length === 0) {
+        results.textContent = `Your type is normal`;
+    } else if (type.length === 1) {
+        results.textContent = `Your type is ${type[0]}`;
+    } else if (type.length === 2) {
+        results.textContent = `Your type is ${type[0]}-${type[1]}`;
+    } else {
+        const randInt = Math.floor(Math.random() * type.length);
+        const randType = type.splice(randInt, 1);
+        results.textContent = `Your type is ${randType}, but it could also be one of the following: ${type.join(", ")}`;
+    }
 }
 
 const clear = () => {

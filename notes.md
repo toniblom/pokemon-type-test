@@ -6,7 +6,7 @@ How to implement this test?
 * Button to show result
     * show the types + some examples of pokemon of that type
     * Change the color scheme / decorations of the page according to types 
-* Variables for point counts for each type
+* Variables for point counts for each type?
 * Progress bar for question completion?
 * Counter for how many times the test has been taken
 

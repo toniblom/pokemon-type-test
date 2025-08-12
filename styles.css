@@ -1,5 +1,34 @@
 
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+
+
+/*TODO:
+    Make header bigger and better
+    Change font styles
+    Make introductory paragraph pop
+    Make results section almost 100vh
+    Make descriptions based on results
+    Make type bold and colored based on typing
+    Change color scheme based on typing
+    Make footer look better
+
+*/
+
 h1 {
     color: teal;
 }
 
+#results {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+li {
+  list-style-type: none;
+}
