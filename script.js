@@ -1,27 +1,30 @@
 
-// TODO: Show results disables radio buttons and hides button, scrolls to description
-// TODO: Try again resets radio buttons and scrolls to top of page
+// TODO: Reset radio buttons to their initial value
+// TODO: make buttons not take space when not visible
+// TODO: make results not take space when not visible (remove from dom?)
 
 
 // Store references
+const header = document.querySelector("header");
 const resultsButton = document.querySelector("#resultsButton");
 const results = document.querySelector("#results");
 const tryAgainButton = document.querySelector("#tryAgainButton");
+tryAgainButton.style.visibility = "hidden";
 
 //Functions
 
 const calcResults = () => {
-    const results = []
+    const res = []
 
     for (let i = 1; i < 16; i++) {
         const type = document.querySelector(`input[name="q${i}"]:checked`).value;
 
         if (type !== "noneof") {
-            results.push(type);
+            res.push(type);
         }
     }
 
-    return mostFrequent(results);
+    return mostFrequent(res);
 }
 
 // Count the most frequent values in an array (1 to 2 values)
@@ -61,11 +64,17 @@ const showResults = () => {
         const randType = type.splice(randInt, 1);
         results.textContent = `Your type is ${randType}, but it could also be one of the following: ${type.join(", ")}`;
     }
+
+    tryAgainButton.style.visibility = "visible";
+    resultsButton.style.visibility = "hidden";
+    results.scrollIntoView({behavior: 'smooth'});
 }
 
 const clear = () => {
     results.textContent = "";
-    window.location.reload() // refresh the page
+    tryAgainButton.style.visibility = "hidden";
+    resultsButton.style.visibility = "visible";
+    header.scrollIntoView({behavior: 'smooth'});
 }
 
 // Event handlers for buttons

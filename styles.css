@@ -1,34 +1,83 @@
+/*TODO:
+    Make page to center horizontally
+    Give a background-color to page
+    Make descriptions based on results
+    Make type bold and colored based on typing
+    Change color scheme based on typing
+    add a @media rule to make font smaller on narrow screen
+*/
 
-/* *,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-} */
+  font-family: Verdana, Arial, sans-serif;
+  max-width: 1000px;
+}
 
-
-/*TODO:
-    Make header bigger and better
-    Change font styles
-    Make introductory paragraph pop
-    Make results section almost 100vh
-    Make descriptions based on results
-    Make type bold and colored based on typing
-    Change color scheme based on typing
-    Make footer look better
-
-*/
+header {
+  background-color: beige;
+  padding: 2rem;
+  text-align: center;
+}
 
 h1 {
     color: teal;
+    font-size: 3rem;
+}
+
+#intro {
+  padding: 4rem 2rem;
+  font-style:italic;
+  color:white;
+  background-color: black;
+}
+
+fieldset {
+  margin: 0.5rem;
+  padding: 1rem;
+  border-color: lightgrey;
+  border-radius: 5px;
+}
+
+fieldset p {
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
+  margin: 0.5rem;
+}
+
+button {
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-size: 1rem;
+  border-style: none;
+  background-color: teal;
+  color:white;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: green;
 }
 
 #results {
     font-size: 2rem;
     margin: 1rem;
+    padding: 2rem;
+    background-color: aqua;
+    /* height: 90vh; */
 }
 
-li {
-  list-style-type: none;
+footer {
+  color:antiquewhite;
+  background-color: teal;
+  padding: 2rem 0;
+  text-align: center;
 }
