@@ -1,7 +1,5 @@
 /*TODO:
-    Make page to center horizontally
     Give a background-color to page
-    Make descriptions based on results
     Make type bold and colored based on typing
     Change color scheme based on typing
     add a @media rule to make font smaller on narrow screen
@@ -14,29 +12,43 @@
   margin: 0;
   padding: 0;
   font-family: Verdana, Arial, sans-serif;
+}
+
+body {
+  background-color: beige;
+  margin: 0.5rem;
+}
+
+main, header, footer {
+  display: block;
+  margin: 0 auto;
   max-width: 1000px;
 }
 
-header {
-  background-color: beige;
+header, footer {
+  background-color: lightsalmon;
   padding: 2rem;
   text-align: center;
+  margin: 0.5rem auto;
+  border-radius: 5px;
 }
 
 h1 {
-    color: teal;
-    font-size: 3rem;
+    color: black;
+    font-size: 2.5rem;
 }
 
 #intro {
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   font-style:italic;
   color:white;
-  background-color: black;
+  background-color: grey;
+  border-radius: 5px;
+  text-align: center;
 }
 
 fieldset {
-  margin: 0.5rem;
+  margin: 0.5rem auto;
   padding: 1rem;
   border-color: lightgrey;
   border-radius: 5px;
@@ -55,29 +67,29 @@ li {
 button {
   display: block;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: 1rem;
   border-style: none;
-  background-color: teal;
+  background-color: grey;
   color:white;
-  border-radius: 3px;
+  border-radius: 5px;
+  min-width: 350px;
 }
 
 button:hover {
   background-color: green;
 }
 
-#results {
+#resultsType {
     font-size: 2rem;
     margin: 1rem;
-    padding: 2rem;
-    background-color: aqua;
+    padding: 0 2rem;
+    background-color: lightgrey;
     /* height: 90vh; */
 }
 
-footer {
-  color:antiquewhite;
-  background-color: teal;
-  padding: 2rem 0;
-  text-align: center;
+#resultsDescription {
+  margin: 2rem 2rem 3rem 2rem;
+  line-height: 2;
+  font-style: italic;
 }
