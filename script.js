@@ -1,16 +1,15 @@
 
 // TODO: Reset radio buttons to their initial value
-// TODO: make buttons not take space when not visible
-// TODO: make results not take space when not visible (remove from dom?)
+// add pictures of pokemon for each type
 
 const description = {
-    bug: "Bug types dance to the beat of their own drums and don't let other people's negative opinions affect them. They are very adaptable and enjoy both quiet time in nature and social gatherings. Some people might see them as weak or as nothing special, but bug types know better: they understand the power that comes from paying attention to small details and they don't need to make a parade about it.",
+    bug: `Bug types dance to the beat of their own drums and don't let other people's negative opinions affect them. They are very adaptable and enjoy both quiet time in nature and social gatherings. Some people might see them as weak or as nothing special, but bug types know better: they understand the power that comes from paying attention to small details and they don't need to make a parade about it.`,
     dark: "Dark types are good at defending themselves and are not easily taken advantage of. Sometimes they might see the world through negativity, but that causes them rarely to be disappointed. Dark types accept the fact that there are both light and dark moments in life.",
     dragon: "Dragon types are powerful and fearless, often becoming leaders in their chosen field or in their reference group. There is a risk that a dragon type might take themselves too seriously; especially light-hearted types like fairy types can easily expose their vulnerabilities.",
     electric: "Electric types are fast learners and often have an interest in new technologies and new experiences in general. They have little patience in things that they are not interested in, but once they are interested in something, their enthusiasm can be quite contagious.",
     fairy: "Fairy types are light-hearted and kind while also being determined. It is impossible to dislike them without looking like a jerk. They are highly attuned to other people's emotions and want to make everyone around them happy; most of the time they also succeed in this.",
     fighting: "Fighting types are warriors at heart. They are tenacious and never give up (even in situations where they probably should). They always keep striving for bigger goals and improving themselves.",
-    fire: "Fire types are not afraid to show their emotions, both positive and negative, to others. This is both their greatest strength and their greatest weakness. Fire types are usually confident in their own abilities and popular among their peers, causing them to often gain a loayl following.",
+    fire: "Fire types are not afraid to show their emotions, both positive and negative, to others. This is both their greatest strength and their greatest weakness. Fire types are usually confident in their own abilities and popular among their peers, causing them to often gain a loyal following.",
     flying: "Flying types often have unique visions and they are not idle dreamers. They set their goals high, sometimes a bit too high. Failing to achieve their lofty goals can leave them frustrated, but with the right support they can be a soaring success.",
     ghost: "Ghost types are interested in the fundamental questions in life, often making good philosophers. They are quite immune to worrying about mundane concerns. Surprisingly, they also have a great, although a bit dark, sense of humor.",
     grass: "Grass types are peaceful and patient. They love the nature and are also interested in making themselves and their surrounds beautiful. Some could see them as vain, but what they fail to understand is that grass types appreciate beauty in all its forms, whether it is outward or inward.",
@@ -27,8 +26,7 @@ const description = {
 // Store references
 const header = document.querySelector("header");
 const resultsButton = document.querySelector("#resultsButton");
-const resultsType = document.querySelector("#resultsType");
-const resultsDescription = document.querySelector("#resultsDescription");
+const results = document.querySelector("#results");
 const tryAgainButton = document.querySelector("#tryAgainButton");
 tryAgainButton.style.visibility = "hidden";
 
@@ -74,28 +72,44 @@ function mostFrequent(arr) {
 // Event handler functions
 const showResults = () => {
     const type = calcResults();
+    let typeColor = "normal";
+    
     if (type.length === 0) {
-        resultsType.textContent = `Your type is normal`;
-        resultsDescription.textContent = `${description["normal"]}`;
+        results.innerHTML = `
+            <h2>Your type is <span class="typeColor typeColor-${typeColor}">${type[0]}</span>!</h2>
+            <p><em>${description[type[0]]}</em></p>
+            `;
     } else if (type.length === 1) {
-        resultsType.textContent = `Your type is ${type[0]}!`;
-        resultsDescription.textContent = `${description[type[0]]}`;
+        typeColor = type[0];
+        results.innerHTML = `
+            <h2>Your type is <span class="typeColor typeColor-${typeColor}">${typeColor}</span>!</h2>
+            <p><em>${description[typeColor]}</em></p>
+            `;
     } else if (type.length === 2) {
-        resultsType.textContent = `Your type is ${type[0]}-${type[1]}`;
+        typeColor = type[0];
+        const type2Color = type[1];
+        results.innerHTML = `
+            <h2>Your type is <span class="typeColor typeColor-${typeColor}">${type[0]}</span>-<span class="typeColor typeColor-${type2Color}">${type[1]}</span>!</h2>
+            <p><em>${description[typeColor]}</em></p>
+            <p><em>${description[type2Color]}</em></p>
+            `;
     } else {
         const randInt = Math.floor(Math.random() * type.length);
         const randType = type.splice(randInt, 1);
-        resultsType.textContent = `Your type is ${randType}, but it could also be one of the following: ${type.join(", ")}`;
+        results.innerHTML = `
+            <h2>Your type is <span class="typeColor typeColor-${randType}">${randType}</span>!</h2>
+            <p>...but it could also be one of the following types: ${type.join(", ")}.</p>
+            <p><em>${description[randType]}</em></p>
+            `;
     }
 
     tryAgainButton.style.visibility = "visible";
     resultsButton.style.visibility = "hidden";
-    resultsType.scrollIntoView({behavior: 'smooth'});
+    results.scrollIntoView({behavior: 'smooth'});
 }
 
 const clear = () => {
-    resultsType.textContent = "";
-    resultsDescription.textContent = "";
+    results.textContent = "";
     tryAgainButton.style.visibility = "hidden";
     resultsButton.style.visibility = "visible";
     header.scrollIntoView({behavior: 'smooth'});

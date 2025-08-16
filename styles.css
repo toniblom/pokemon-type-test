@@ -1,9 +1,12 @@
 /*TODO:
-    Give a background-color to page
-    Make type bold and colored based on typing
-    Change color scheme based on typing
     add a @media rule to make font smaller on narrow screen
+    style radio buttons
 */
+
+:root {
+  --main-bg-color: rgb(0, 82, 82);
+  --main-fg-color: white;
+}
 
 *,
 *::before,
@@ -12,6 +15,7 @@
   margin: 0;
   padding: 0;
   font-family: Verdana, Arial, sans-serif;
+  line-height: 1.5;
 }
 
 body {
@@ -26,31 +30,46 @@ main, header, footer {
 }
 
 header, footer {
-  background-color: lightsalmon;
-  padding: 2rem;
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
   text-align: center;
-  margin: 0.5rem auto;
   border-radius: 5px;
 }
 
+header {
+  padding: 2rem;
+  margin: 0.5rem auto;
+}
+
+footer {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  margin: 0.5rem auto 3rem auto;
+}
+
 h1 {
-    color: black;
     font-size: 2.5rem;
 }
 
 #intro {
   padding: 3rem 2rem;
   font-style:italic;
-  color:white;
-  background-color: grey;
-  border-radius: 5px;
+  color: var(--main-bg-color);
+  background-color: var(--main-fg-color);
+  border: 3px solid var(--main-bg-color);
+  border-radius: 0 0 5px 5px;
   text-align: center;
+  margin-top: -0.7rem;
+}
+
+legend {
+  color: var(--main-bg-color);
 }
 
 fieldset {
   margin: 0.5rem auto;
   padding: 1rem;
-  border-color: lightgrey;
+  border-color: rgb(15, 12, 12);
   border-radius: 5px;
 }
 
@@ -67,29 +86,99 @@ li {
 button {
   display: block;
   margin: 1rem auto;
-  padding: 0.5rem;
+  padding: 0.2rem;
   font-size: 1rem;
+  font-weight: bold;
   border-style: none;
-  background-color: grey;
-  color:white;
-  border-radius: 5px;
+  background-color: lightskyblue;
+  color:black;
+  border-radius: 15px;
   min-width: 350px;
 }
 
 button:hover {
-  background-color: green;
+  background-color: blue;
+  color: white;
 }
 
-#resultsType {
-    font-size: 2rem;
-    margin: 1rem;
+button:active {
+  background-color: red;
+  color: white;
+}
+
+#results {
+    font-size: 1.5rem;
+    margin: 1rem auto;
     padding: 0 2rem;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
+    border-radius: 7px;
     /* height: 90vh; */
 }
 
-#resultsDescription {
-  margin: 2rem 2rem 3rem 2rem;
-  line-height: 2;
-  font-style: italic;
+h2, p {
+  padding: 1rem;
+}
+
+
+/* Type colors */
+.typeColor {
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+  color: white;
+}
+
+.typeColor-bug {
+  background-color: rgb(114, 114, 0);
+}
+.typeColor-dark {
+  background-color: rgb(0, 0, 0);
+}
+.typeColor-dragon {
+  background-color: rgb(77, 28, 133);
+}
+.typeColor-electric {
+  background-color: rgb(255, 255, 0);
+}
+.typeColor-fairy {
+  background-color: rgb(255, 140, 245);
+}
+.typeColor-fighting {
+  background-color: rgb(138, 46, 10);
+}
+.typeColor-fire {
+  background-color: rgb(255, 123, 0);
+}
+.typeColor-flying {
+  background-color: rgb(179, 151, 255);
+}
+.typeColor-ghost {
+  background-color: rgb(60, 35, 102);
+}
+.typeColor-grass {
+  background-color: rgb(6, 189, 0);
+}
+.typeColor-ground {
+  background-color: rgb(182, 180, 99);
+}
+.typeColor-ice {
+  background-color: rgb(134, 255, 255);
+}
+.typeColor-normal {
+  background-color: rgb(180, 180, 159);
+}
+.typeColor-poison {
+  background-color: rgb(109, 0, 136);
+}
+.typeColor-psychic {
+  background-color: rgb(190, 86, 135);
+}
+.typeColor-rock {
+  background-color: rgb(134, 117, 71);
+}
+.typeColor-steel {
+  background-color: rgb(165, 165, 165);
+}
+.typeColor-water {
+  background-color: rgb(60, 134, 194);
 }
