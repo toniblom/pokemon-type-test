@@ -1,12 +1,10 @@
-
-// TODO: Reset radio buttons to their initial value
-// add pictures of pokemon for each type
+// Type descriptions
 
 const description = {
     bug: `Bug types dance to the beat of their own drums and don't let other people's negative opinions affect them. They are very adaptable and enjoy both quiet time in nature and social gatherings. Some people might see them as weak or as nothing special, but bug types know better: they understand the power that comes from paying attention to small details and they don't need to make a parade about it.`,
     dark: "Dark types are good at defending themselves and are not easily taken advantage of. Sometimes they might see the world through negativity, but that causes them rarely to be disappointed. Dark types accept the fact that there are both light and dark moments in life.",
     dragon: "Dragon types are powerful and fearless, often becoming leaders in their chosen field or in their reference group. There is a risk that a dragon type might take themselves too seriously; especially light-hearted types like fairy types can easily expose their vulnerabilities.",
-    electric: "Electric types are fast learners and often have an interest in new technologies and new experiences in general. They have little patience in things that they are not interested in, but once they are interested in something, their enthusiasm can be quite contagious.",
+    electric: "Electric types are fast learners and often have an interest in new technologies and new experiences in general. They have little patience for things that they are not interested in, but once they are interested in something, their enthusiasm can be quite contagious.",
     fairy: "Fairy types are light-hearted and kind while also being determined. It is impossible to dislike them without looking like a jerk. They are highly attuned to other people's emotions and want to make everyone around them happy; most of the time they also succeed in this.",
     fighting: "Fighting types are warriors at heart. They are tenacious and never give up (even in situations where they probably should). They always keep striving for bigger goals and improving themselves.",
     fire: "Fire types are not afraid to show their emotions, both positive and negative, to others. This is both their greatest strength and their greatest weakness. Fire types are usually confident in their own abilities and popular among their peers, causing them to often gain a loyal following.",
@@ -32,6 +30,7 @@ tryAgainButton.style.visibility = "hidden";
 
 //Functions
 
+// Calculate results
 const calcResults = () => {
     const res = []
 
@@ -46,16 +45,16 @@ const calcResults = () => {
     return mostFrequent(res);
 }
 
-// Count the most frequent values in an array (1 to 2 values)
+// Count the most frequent value(s) in an array
 function mostFrequent(arr) {
     let m = new Map();
     let maxCount = 0;
     let res = [];
-
+    
     for (let num of arr) {
         let count = (m.get(num) || 0) + 1;
         m.set(num, count);
-
+        
         if (count > maxCount) {
             maxCount = count;
             res = [num];
@@ -63,21 +62,27 @@ function mostFrequent(arr) {
             res.push(num);
         }
     }
-
+    
     return res;
-    //return res[Math.floor(Math.random() * res.length)];
 }
 
+// Return radio buttons to initial state
+const resetRadioButtons = () => {
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false)
+    document.querySelectorAll('input[value="noneof"]').forEach(radio => radio.checked = true)
+}
 
 // Event handler functions
+
+// Show results button
 const showResults = () => {
     const type = calcResults();
     let typeColor = "normal";
     
     if (type.length === 0) {
         results.innerHTML = `
-            <h2>Your type is <span class="typeColor typeColor-${typeColor}">${type[0]}</span>!</h2>
-            <p><em>${description[type[0]]}</em></p>
+            <h2>Your type is <span class="typeColor typeColor-${typeColor}">${typeColor}</span>!</h2>
+            <p><em>${description[typeColor]}</em></p>
             `;
     } else if (type.length === 1) {
         typeColor = type[0];
@@ -108,10 +113,12 @@ const showResults = () => {
     results.scrollIntoView({behavior: 'smooth'});
 }
 
+// Try again button
 const clear = () => {
     results.textContent = "";
     tryAgainButton.style.visibility = "hidden";
     resultsButton.style.visibility = "visible";
+    resetRadioButtons();
     header.scrollIntoView({behavior: 'smooth'});
 }
 
